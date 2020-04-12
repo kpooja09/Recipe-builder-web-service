@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Reciepe Helper</title>
+		<script src='static/main.js'></script>
+		<style>
+			table, th, td {
+			border: 1px solid black;
+			border-collapse: collapse;
+			}
+			th, td {
+			padding: 5px;
+			text-align: left;    
+			}
+		</style>
+		<h1>Welcome</h1>
+	</head>
+	<body style="background-color:#ccffcc;">
+		<div id='allcontent'>
+			<div>
+				<img src = "./static/cover.jpg" style="width: 100%;height: 250px;">
+			</div>
+			<div id="inputDiv">
+				<label><h3>Search Food:</h3></label>
+				<input type="text" id="inputTxt" placeholder="Pizza">
+				<button id="searchBut" onclick="searchFood()"> Search </button>
+			</div>
+			<br>
+			<br>
+			<br>
+			<div id="outputDiv" style = "visibility: hidden;">
+				<div id="ingredients">
+					<label><h3>Ingredients Nutrtious Value</h3></label>
+					<div id='ingr'>
+						
+					</div>
+				</div>
+				<br>
+				<br>
+				<div id="instructions">
+					<label><h3>Instructions</h3></label>
+					<div id='instrcution_recipe'>
+
+					</div>
+				</div>
+				<br>
+				<br>
+				<div id="weather">
+					<label><h3>Current Weather</h3></label>
+					<div id='weather_today'>
+
+					</div>
+				</div>
+				<br>
+				<br>			
+				<div id="grocerry">
+					<label><h3> Grocerry Stores</h3></label>
+					<div id='stores'>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
