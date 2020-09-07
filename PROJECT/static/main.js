@@ -43,43 +43,43 @@ function getIngredients(htmldt){
 	request.send()
 }
 
-// this gets the current weather
-function getWeather(){
+// // this gets the current weather
+// function getWeather(){
 
 	
-	var request = new XMLHttpRequest()
+// 	var request = new XMLHttpRequest()
 
-	// Open a new connection, using the GET request on the URL endpoint
-	request.open('GET', 'http://127.0.0.1:5000/weather', true)
+// 	// Open a new connection, using the GET request on the URL endpoint
+// 	request.open('GET', 'http://127.0.0.1:5000/weather', true)
 
-	request.onload = function() {
-	// Begin accessing JSON data here
-		var data = JSON.parse(this.response)
-		htmldt = data["weatherReport"]
-		document.getElementById('weather_today').innerHTML = htmldt
-	}
+// 	request.onload = function() {
+// 	// Begin accessing JSON data here
+// 		var data = JSON.parse(this.response)
+// 		htmldt = data["weatherReport"]
+// 		document.getElementById('weather_today').innerHTML = htmldt
+// 	}
 
-	// Send request
-	request.send()
+// 	// Send request
+// 	request.send()
 
-}
+// }
 
-// this gets the nearby grocerry stores
-function getStores(){
+// // this gets the nearby grocerry stores
+// function getStores(){
 
-	var request = new XMLHttpRequest()
+// 	var request = new XMLHttpRequest()
 
-	// Open a new connection, using the GET request on the URL endpoint
-	request.open('GET', 'http://127.0.0.1:5000/stores', true)
+// 	// Open a new connection, using the GET request on the URL endpoint
+// 	request.open('GET', 'http://127.0.0.1:5000/stores', true)
 
-	request.onload = function() {
-	// Begin accessing JSON data here
-		var data = JSON.parse(this.response)
-		htmldt = data["stores"]
-		document.getElementById('stores').innerHTML = htmldt
-	}
+// 	request.onload = function() {
+// 	// Begin accessing JSON data here
+// 		var data = JSON.parse(this.response)
+// 		htmldt = data["stores"]
+// 		document.getElementById('stores').innerHTML = htmldt
+// 	}
 
-	// Send request
-	request.send()
+// 	// Send request
+// 	request.send()
 
-}
+// }

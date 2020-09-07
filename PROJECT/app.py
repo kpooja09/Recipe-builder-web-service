@@ -23,10 +23,10 @@ def search(food):
 
 	recipe_dtls = response.json()
 	
-	with open('recipe_search.json', 'w') as outfile:
+	with open('./data/recipe_search.json', 'w') as outfile:
 		json.dump(recipe_dtls, outfile)
 
-	with open('recipe_search.json','r') as f:
+	with open('./data/recipe_search.json','r') as f:
 		recipe_dtls = json.load(f)
 
 	recipe_id = recipe_dtls['results'][0]['id']
@@ -63,11 +63,11 @@ def get_nutrious_value(ingr):
 		response = requests.request("GET", url, headers=headers, params=querystring)
 
 		response = response.json()
-		print(response)
-		with open('data_ingredient_' + elements + '.json', 'w') as outfile:
+		# print(response)
+		with open('./data/data_ingredient_' + elements + '.json', 'w') as outfile:
 		    json.dump(response, outfile)
 		# table elements
-		with open('data_ingredient_' + elements + '.json', 'r') as f:
+		with open('./data/data_ingredient_' + elements + '.json', 'r') as f:
 			data = json.load(f)
 			for d in data['hits'][:1]:
 				table_html += "<td>"+ elements + "</td>"
@@ -87,11 +87,11 @@ def get_ingredients(recipe_id):
 
 	recipe_ingr = response.json()
 
-	with open('recipe_ingr.json', 'w') as outfile:
+	with open('./data/recipe_ingr.json', 'w') as outfile:
 		json.dump(recipe_ingr, outfile)
 	recipe = {}
 	recipe['ingr'] = []
-	with open('recipe_ingr.json','r') as f:
+	with open('./data/recipe_ingr.json','r') as f:
 		recipe_ingr = json.load(f)
 
 		recipe['instructions'] = recipe_ingr['instructions']
@@ -114,74 +114,74 @@ def get_mylocation():
 	loc = str(43.090606689453125) + "," +str(-77.64578247070312)
 	return loc
 
-# get current weather using SOAP API
-@app.route('/weather')
-def get_currentweather():
+# # get current weather using SOAP API
+# @app.route('/weather')
+# def get_currentweather():
 
-	# lat, lon = get_mylocation().split(",")
-	client = Client('https://graphical.weather.gov/xml/SOAP_server/ndfdXMLserver.php?wsdl')
+# 	# lat, lon = get_mylocation().split(",")
+# 	client = Client('https://graphical.weather.gov/xml/SOAP_server/ndfdXMLserver.php?wsdl')
 
-	# SOAP request, parameters specify what all fields needed in the output
-	response= client.service.NDFDgen(latitude=43.090606689453125,longitude=-77.64578247070312,
-	                       startTime=datetime.datetime.now().date(),
-	                      endTime=datetime.datetime.now().date()+ datetime.timedelta(days=2),product='time-series',
-	                      Unit='m',weatherParameters={"maxt":1,"mint":1,
-	                                                 "temp":1,"dew":0,"pop12":0,'qpf':0,
-	                                                 "sky":0,"snow":1,'wspd':0,"wdir":0, "wx":0, 
-	                                                  "waveh":0, "icons":0, "critfireo":0, 
-	                                                  "dryfireo":0,'rh':0,'appt':0,'incw34':0,
-	                                                 'incw50':0,'incw64':0,"cumw34":0,
-	                                                 'cumw50':0,"cumw64":0,'conhazo':0,
-	                                                 "ptornado":0,"phail":0,"ptstmwinds":0,
-	                                                 "pxtornado":0,"pxhail":0,"pxtstmwinds":0,
-	                                                  "ptotsvrtstm":0,"pxtotsvrtstm":0,"tmpabv14d":0,
-	                                                 "tmpblw14d":0,'tmpabv30d':0,"tmpblw30d":0,
-	                                                 "tmpabv90d":0,"tmpblw90d":0,"prcpabv14d":0,
-	                                                 "prcpblw14d":0,"prcpabv30d":0,"prcpabv30d":0,
-	                                                "prcpabv30d":0 ,"prcpblw30d":0,"prcpabv90d":0,
-	                                                 "prcpabv90d":0,"prcpblw90d":0,"precipa_r":0,
-	                                                 "sky_r":0,"temp_r":0,"wdir_r":0, "wspd_r":0, 
-	                                                  "wgust":0, "iceaccum":0,"td_r":0,"wwa":0})
+# 	# SOAP request, parameters specify what all fields needed in the output
+# 	response= client.service.NDFDgen(latitude=43.090606689453125,longitude=-77.64578247070312,
+# 	                       startTime=datetime.datetime.now().date(),
+# 	                      endTime=datetime.datetime.now().date()+ datetime.timedelta(days=2),product='time-series',
+# 	                      Unit='m',weatherParameters={"maxt":1,"mint":1,
+# 	                                                 "temp":1,"dew":0,"pop12":0,'qpf':0,
+# 	                                                 "sky":0,"snow":1,'wspd':0,"wdir":0, "wx":0, 
+# 	                                                  "waveh":0, "icons":0, "critfireo":0, 
+# 	                                                  "dryfireo":0,'rh':0,'appt':0,'incw34':0,
+# 	                                                 'incw50':0,'incw64':0,"cumw34":0,
+# 	                                                 'cumw50':0,"cumw64":0,'conhazo':0,
+# 	                                                 "ptornado":0,"phail":0,"ptstmwinds":0,
+# 	                                                 "pxtornado":0,"pxhail":0,"pxtstmwinds":0,
+# 	                                                  "ptotsvrtstm":0,"pxtotsvrtstm":0,"tmpabv14d":0,
+# 	                                                 "tmpblw14d":0,'tmpabv30d':0,"tmpblw30d":0,
+# 	                                                 "tmpabv90d":0,"tmpblw90d":0,"prcpabv14d":0,
+# 	                                                 "prcpblw14d":0,"prcpabv30d":0,"prcpabv30d":0,
+# 	                                                "prcpabv30d":0 ,"prcpblw30d":0,"prcpabv90d":0,
+# 	                                                 "prcpabv90d":0,"prcpblw90d":0,"precipa_r":0,
+# 	                                                 "sky_r":0,"temp_r":0,"wdir_r":0, "wspd_r":0, 
+# 	                                                  "wgust":0, "iceaccum":0,"td_r":0,"wwa":0})
 
-	# converting xml to json for parsing
-	t = xmltodict.parse(response)
-	with open('weather.json', 'w') as outfile:
-	    json.dump(t, outfile)
+# 	# converting xml to json for parsing
+# 	t = xmltodict.parse(response)
+# 	with open('weather.json', 'w') as outfile:
+# 	    json.dump(t, outfile)
 
-	with open('weather.json','r') as f:
-		weather_data = json.load(f)
+# 	with open('weather.json','r') as f:
+# 		weather_data = json.load(f)
 
-	maximum_temp = weather_data['dwml']['data']['parameters']['temperature'][0]['value']
-	minimum_temp = weather_data['dwml']['data']['parameters']['temperature'][1]['value']
-	res = "Todays Weather: <br> Maximum Temp " + str(max(maximum_temp)),"degree Celcius, <br>Minimum Temp : "+ str(min(minimum_temp)), " degree Celcius <br><h4>Have a good one! </h4>"
-	return {"weatherReport":res}
+# 	maximum_temp = weather_data['dwml']['data']['parameters']['temperature'][0]['value']
+# 	minimum_temp = weather_data['dwml']['data']['parameters']['temperature'][1]['value']
+# 	res = "Todays Weather: <br> Maximum Temp " + str(max(maximum_temp)),"degree Celcius, <br>Minimum Temp : "+ str(min(minimum_temp)), " degree Celcius <br><h4>Have a good one! </h4>"
+# 	return {"weatherReport":res}
 
-# this connects with a API to get all the nearby grocerry stors.
-@app.route('/stores')
-def getStores():
-	loc = get_mylocation()
+# # this connects with a API to get all the nearby grocerry stors.
+# @app.route('/stores')
+# def getStores():
+# 	loc = get_mylocation()
 	
-	url ="https://dev.virtualearth.net/REST/v1/LocalSearch/?query=grocerry&key=AnIHk3-LY10J3oEqDpKLtOzs4nzZmFa0JOL4rvicXbFAZ5jYGseHv4LxB5uu4GEn"
-	response = requests.request("GET", url,params = {"userLocation": loc})
-	response = response.json()
-	# print(response)
-	with open('grocerry_stores.json', 'w') as outfile:
-	    json.dump(response, outfile)
-	stores_list = "<ol>"
-	with open('grocerry_stores.json','r') as f:
-		grocerry_Stores = json.load(f)
-		# stores_list =list([])
-		for stores in grocerry_Stores['resourceSets']:
-			for s in stores['resources'][:7]:
-				store = "<li><ul style = 'list-style-type:None'>"
-				store += "<li><b>" + s['name'] + "</b></li>"
-				store += "<li>" + s['Address']['formattedAddress']+ "</li>"
-				store += "<li>" + s['PhoneNumber']+ "</li>"
-				store += "<li>" + s['Website']+ "</li>"
-				store += "</ul></li><br>"
-				stores_list += store
-	stores_list += "</ol>"
-	return {'stores':stores_list}
+# 	url ="https://dev.virtualearth.net/REST/v1/LocalSearch/?query=grocerry&key=AnIHk3-LY10J3oEqDpKLtOzs4nzZmFa0JOL4rvicXbFAZ5jYGseHv4LxB5uu4GEn"
+# 	response = requests.request("GET", url,params = {"userLocation": loc})
+# 	response = response.json()
+# 	# print(response)
+# 	with open('grocerry_stores.json', 'w') as outfile:
+# 	    json.dump(response, outfile)
+# 	stores_list = "<ol>"
+# 	with open('grocerry_stores.json','r') as f:
+# 		grocerry_Stores = json.load(f)
+# 		# stores_list =list([])
+# 		for stores in grocerry_Stores['resourceSets']:
+# 			for s in stores['resources'][:7]:
+# 				store = "<li><ul style = 'list-style-type:None'>"
+# 				store += "<li><b>" + s['name'] + "</b></li>"
+# 				store += "<li>" + s['Address']['formattedAddress']+ "</li>"
+# 				store += "<li>" + s['PhoneNumber']+ "</li>"
+# 				store += "<li>" + s['Website']+ "</li>"
+# 				store += "</ul></li><br>"
+# 				stores_list += store
+# 	stores_list += "</ol>"
+# 	return {'stores':stores_list}
 
 # App run, debug mode true to avoid rerunning after changes
 app.run(debug=True)
